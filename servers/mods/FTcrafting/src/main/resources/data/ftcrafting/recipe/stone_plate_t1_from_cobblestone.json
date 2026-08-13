@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "id": "ftcrafting:stone_plate_t1",
+    "count": 1
+  }
+}
