@@ -3,6 +3,7 @@ package com.floorty.ftcamp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.logging.LogUtils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -64,7 +65,7 @@ public final class FTCamp {
                 .then(Commands.literal("tax").executes(ctx -> unavailable(ctx.getSource(), "Налоговый сбор не работает для кемпов."))));
     }
 
-    private static int buy(CommandSourceStack source, String name) throws Exception {
+    private static int buy(CommandSourceStack source, String name) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
         Data data = load(source.getServer());
         if (findByMember(data, player.getUUID()) != null) return fail(source, "Вы уже состоите в системе: Кемп.");
@@ -78,7 +79,7 @@ public final class FTCamp {
         return 1;
     }
 
-    private static int info(CommandSourceStack source) throws Exception {
+    private static int info(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Settlement s = findByMember(load(source.getServer()), p.getUUID());
         if (s == null) return fail(source, "Вы не состоите в системе: Кемп.");
@@ -86,7 +87,7 @@ public final class FTCamp {
         return 1;
     }
 
-    private static int members(CommandSourceStack source) throws Exception {
+    private static int members(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Settlement s = findByMember(load(source.getServer()), p.getUUID());
         if (s == null) return fail(source, "Вы не состоите в системе: Кемп.");
@@ -95,7 +96,7 @@ public final class FTCamp {
         return 1;
     }
 
-    private static int invite(CommandSourceStack source, ServerPlayer target) throws Exception {
+    private static int invite(CommandSourceStack source, ServerPlayer target) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Data data = load(source.getServer());
         Settlement s = findByLeader(data, p.getUUID());
@@ -108,7 +109,7 @@ public final class FTCamp {
         return 1;
     }
 
-    private static int join(CommandSourceStack source) throws Exception {
+    private static int join(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Data data = load(source.getServer());
         if (findByMember(data, p.getUUID()) != null) return fail(source, "Вы уже состоите в поселении этой системы.");
@@ -121,7 +122,7 @@ public final class FTCamp {
         return 1;
     }
 
-    private static int leave(CommandSourceStack source) throws Exception {
+    private static int leave(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Data data = load(source.getServer());
         Settlement s = findByMember(data, p.getUUID());
@@ -133,7 +134,7 @@ public final class FTCamp {
         return 1;
     }
 
-    private static int kick(CommandSourceStack source, ServerPlayer target) throws Exception {
+    private static int kick(CommandSourceStack source, ServerPlayer target) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Data data = load(source.getServer());
         Settlement s = findByLeader(data, p.getUUID());
@@ -145,7 +146,7 @@ public final class FTCamp {
         return success(source, "Игрок исключён.");
     }
 
-    private static int transfer(CommandSourceStack source, ServerPlayer target) throws Exception {
+    private static int transfer(CommandSourceStack source, ServerPlayer target) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Data data = load(source.getServer());
         Settlement s = findByLeader(data, p.getUUID());
@@ -156,7 +157,7 @@ public final class FTCamp {
         return success(source, "Лидерство передано игроку " + target.getName().getString() + ".");
     }
 
-    private static int delete(CommandSourceStack source) throws Exception {
+    private static int delete(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer p = source.getPlayerOrException();
         Data data = load(source.getServer());
         Settlement s = findByLeader(data, p.getUUID());
