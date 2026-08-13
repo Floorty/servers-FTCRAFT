@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "id": "ftcrafting:gunpowder_t1",
+    "count": 1
+  }
+}
