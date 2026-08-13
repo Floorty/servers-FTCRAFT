@@ -1,0 +1,32 @@
+name: Build FT mods
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'servers/mods/FTCRAFT/**'
+      - 'servers/mods/FTcrafting/**'
+      - '.github/workflows/build-mods.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mod: [FTCRAFT, FTcrafting]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.2.1'
+      - name: Build ${{ matrix.mod }}
+        working-directory: servers/mods/${{ matrix.mod }}
+        run: gradle build --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.mod }}-jar
+          path: servers/mods/${{ matrix.mod }}/build/libs/*.jar
