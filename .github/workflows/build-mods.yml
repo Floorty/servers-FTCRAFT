@@ -11,6 +11,7 @@ on:
       - 'servers/mods/FTciti/**'
       - 'servers/mods/FTprov/**'
       - 'servers/mods/FTciv/**'
+      - 'servers/mods/FTcoins/**'
       - '.github/workflows/build-mods.yml'
 
 jobs:
@@ -19,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mod: [FTCRAFT, FTcrafting, FTmobs, FTcamp, FTciti, FTprov, FTciv]
+        mod: [FTCRAFT, FTcrafting, FTmobs, FTcamp, FTciti, FTprov, FTciv, FTcoins]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
