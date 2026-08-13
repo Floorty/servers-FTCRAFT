@@ -58,8 +58,7 @@ public final class FTCamp {
                 .then(Commands.literal("delete").executes(ctx -> delete(ctx.getSource())))
                 .then(Commands.literal("bank").executes(ctx -> unavailable(ctx.getSource(), "Казна будет подключена через FTcoins.")))
                 .then(Commands.literal("deposit").executes(ctx -> unavailable(ctx.getSource(), "Пополнение казны будет подключено через FTcoins.")))
-                .then(Commands.literal("withdraw").executes(ctx -> unavailable(ctx.getSource(), "Снятие с казны будет подключено через FTcoins.")))
-                .then(Commands.literal("tax").executes(ctx -> unavailable(ctx.getSource(), "Налоговый сбор не работает для кемпов."))));
+                .then(Commands.literal("withdraw").executes(ctx -> unavailable(ctx.getSource(), "Снятие с казны будет подключено через FTcoins."))));
     }
 
     private static int buy(CommandSourceStack source, String name) throws CommandSyntaxException {
