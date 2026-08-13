@@ -43,8 +43,7 @@ public final class FTProv {
     private static void registerRoot(RegisterCommandsEvent event, String name) {
         event.getDispatcher().register(Commands.literal(name)
                 .then(Commands.literal("buy")
-                        .then(Commands.argument("name", StringArgumentType.greedyString())
-                                .executes(ctx -> buy(ctx.getSource(), StringArgumentType.getString(ctx, "name")))))
+                        .executes(ctx -> unavailable(ctx.getSource(), "Функция пока недоступна.")))
                 .then(Commands.literal("info").executes(ctx -> info(ctx.getSource())))
                 .then(Commands.literal("members").executes(ctx -> members(ctx.getSource())))
                 .then(Commands.literal("invite")
