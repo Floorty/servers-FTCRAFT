@@ -42,6 +42,8 @@ public final class FTCamp {
 
     private static void registerRoot(RegisterCommandsEvent event, String name) {
         event.getDispatcher().register(Commands.literal(name)
+                .then(Commands.literal("buy")
+                        .executes(ctx -> unavailable(ctx.getSource(), "Функция пока недоступна.")))
                 .then(Commands.literal("info").executes(ctx -> info(ctx.getSource())))
                 .then(Commands.literal("members").executes(ctx -> members(ctx.getSource())))
                 .then(Commands.literal("invite")
